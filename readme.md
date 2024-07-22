@@ -18,7 +18,7 @@
 `$ pip install -r requirements.txt`
 
 
-## How to install a new dependency:
+## Install a new dependency:
 
 ### IMPORTANT:
 All dependencies not installed locally will be overwritten. Need to have ALL dependencies in the current requirements.txt already installed. If dubious, use an alternate name for 'requirements.txt' name and copy manually the new values.
@@ -35,3 +35,8 @@ All dependencies not installed locally will be overwritten. Need to have ALL dep
 `$ pip3 freeze > requirements.txt`
 
 `$ pip freeze > requirements.txt`
+
+
+## Run the Application:
+
+`flask --app hello run`
