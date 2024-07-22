@@ -20,7 +20,8 @@
 
 ## How to install a new dependency:
 
-### IMPORTANT -> All dependencies not installed locally will be overwritten. Need to have ALL dependencies in the current requirements.txt already installed. If dubious, use an alternate name for 'requirements.txt' name and copy manually the new values.
+### IMPORTANT:
+All dependencies not installed locally will be overwritten. Need to have ALL dependencies in the current requirements.txt already installed. If dubious, use an alternate name for 'requirements.txt' name and copy manually the new values.
 
 ### 1. Install the dependency 'test1'
 #### Use the 'pip' command that suits you
