@@ -1,6 +1,10 @@
-from typing import Tuple, List, Any
+from typing import Any
+from ..services.get_drive import *
+import logging
 
 import chromadb
+
+logger = logging.getLogger(__name__)
 
 
 class VectorDB:
@@ -16,8 +20,14 @@ class VectorDB:
         target_collection = client.get_or_create_collection(name)
         return target_collection
 
+    @staticmethod
+    def get_collection(name: str):
+        client = VectorDB.client
+        target_collection = client.get_collection(name)
+        return target_collection
 
-def map_to_vector_data(data: list) -> tuple[list[Any], list[Any], list[Any]]:
+
+def map_to_vector_data(data: list) -> dict[str, list[Any]]:
     text_content = []
     ids = []
     metadata = []
@@ -27,27 +37,40 @@ def map_to_vector_data(data: list) -> tuple[list[Any], list[Any], list[Any]]:
         ids.append(entry['id'])
         metadata.append(entry['metadata'])
 
-    return text_content, ids, metadata
+    return {
+        "documents": text_content,
+        "ids": ids,
+        "metadata": metadata
+    }
 
 
-def populate_vector_db():
-    collection = VectorDB.get_or_create_collection("success_cases")
+def populate_vector_db(collection: str) -> bool:
+    try:
+        collection = VectorDB.get_or_create_collection(collection)
 
-    presentations = [{
-        "presentationText": "texto",
-        "metadata": {
-            "title": "titulo.."
-        },
-        "id": "id"
-    }, {
-        "presentationText": "texto.....",
-        "metadata": {
-            "title": "titulo.."
-        },
-        "id": "id1"
-    }]
+        presentations = get_drives()
 
-    parsed_data = map_to_vector_data(presentations)
+        parsed_data = map_to_vector_data(presentations)
 
-    collection.upsert(parsed_data)
-    return collection
+        collection.upsert(
+            ids=parsed_data['ids'],
+            documents=parsed_data['documents'],
+            metadatas=parsed_data['metadata']
+        )
+        return True
+    except Exception as e:
+        logger.error(e)
+        return False
+
+
+def query(data, collection="success_case", limit=2):
+    try:
+        collection = VectorDB.get_collection(collection)
+        query_result = collection.query(
+            query_texts=[data['text']],
+            n_results=limit
+        )
+        return query_result
+    except Exception as e:
+        logger.error(e)
+        return None
