@@ -10,7 +10,7 @@ class NLPServiceLemmatization:
     _key_words = ["buscar", "traer", "obtener", "investigar", "indagar", "rastrear", "localizar", "encontrar", "hallar",
                   "detectar", "descubrir", "identificar", "adquirir", "alcanzar", "capturar", "atrapar", "recoger",
                   "tomar", "recibir", "ver", "conocer", "mejorar", "promedio", "solucion", "caso", "exito", "tecnologia", "resultado",
-                  "proyecto", "industria", "cliente", "offering", "desafio", "seguridad", "mejora", "equipo", "seguro"]
+                  "proyecto", "industria", "cliente", "offering", "desafio", "seguridad", "mejora", "equipo", "seguro", "mayor", "menor"]
     _nlp = None
 
     def __new__(cls):
@@ -43,7 +43,7 @@ class NLPServiceLemmatization:
         # Preprocessing of the text
         text = unidecode(text)
         doc = self._nlp(text)
-        filtered_tokens = [token.text for token in doc if token.text.lower() not in self._stop_words]
+        filtered_tokens = [token for token in doc if token.text.lower() not in self._stop_words]
         print(f"Preprocessed text without stop words: {filtered_tokens}")
 
         # Lemmatization
