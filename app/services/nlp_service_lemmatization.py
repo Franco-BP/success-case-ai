@@ -52,7 +52,7 @@ class NLPServiceLemmatization:
 
         # Verify if there is any key words
         for token in tokens_lemmatized:
-            if token in self._key_words or any(word in token for word in self._key_words):
+            if token in self._key_words or any(word == token for word in self._key_words):
                 return True
 
         return False
