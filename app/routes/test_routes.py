@@ -1,8 +1,7 @@
-from flask import Blueprint, request, current_app, abort
-from ..services.vector_db_service import query
+from flask import Blueprint, request, abort, jsonify
 from ..services.nlp_service_lemmatization import NLPServiceLemmatization
 
-chat = Blueprint('chat', __name__)
+test = Blueprint('test', __name__)
 
 
 def valid_request_params(res, params):
@@ -19,19 +18,11 @@ def valid_request_body(body, params):
             return False
     return True
 
-
-@chat.route('/message', methods=['POST'])
+@test.route('/nlp', methods=['POST'])
 def get_relational_cases():
     data = request.get_json()
     if not valid_request_body(data, ['text']):
         abort(400)
     
-    ## Get NLPService Instance for analyzing search intent.
-    if (NLPServiceLemmatization().is_search(data['text'])):    
-        return query(data)
-    else:
-        """
-        CHANGE
-        """
-        ## Call Ollama for a chatbot response.
-        return query(data)
+    ## Initialize the NLP for search intent.
+    return jsonify({'code': 200, 'message': NLPServiceLemmatization().is_search(data['text'])}), 200
