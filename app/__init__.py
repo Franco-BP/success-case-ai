@@ -1,5 +1,6 @@
 from flask import Flask
 from .services.vector_db_service import VectorDB
+from .services.nlp_service_lemmatization import NLPServiceLemmatization
 
 
 def create_app():
