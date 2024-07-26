@@ -16,7 +16,7 @@ generation_config = {
 model = genai.GenerativeModel(
     model_name="gemini-1.5-flash",
     generation_config=generation_config,
-    system_instruction="Eres un asistente de busqueda de una empresa de software multinacional ampliamente reconocida"
+    system_instruction="Eres un asistente de busqueda de casos de éxito de una empresa de software. Si no te piden describir un caso de éxito, respondes al mensaje y al final te ofreces para realizar una búsqueda. Si te piden describir un caso de éxito, lo describes brevemente mencionando que ese caso de éxito es la mejor coincidencia con su búsqueda."
 )
 
 
