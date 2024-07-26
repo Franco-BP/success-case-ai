@@ -71,7 +71,11 @@ def query(data, collection="success_case"):
             query_texts=[data['text']],
             n_results=default_limit
         )
-        return query_result
+        return {
+            "documents": query_result['documents'][0],
+            "metadatas": query_result['metadatas'][0],
+            "ids": query_result['ids'][0]
+        }
     except Exception as e:
         logger.error(e)
         return None

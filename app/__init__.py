@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 
-from .services.vector_db_service import VectorDB
+from .services.vector_db_service import VectorDB, populate_vector_db
 from .services.nlp_service_lemmatization import NLPServiceLemmatization
 
 
@@ -20,5 +20,6 @@ def create_app():
     app.register_blueprint(vectors, url_prefix='/vectors')
 
     app.vector_db_client = VectorDB()
+    populate_vector_db("success_case")
 
     return app

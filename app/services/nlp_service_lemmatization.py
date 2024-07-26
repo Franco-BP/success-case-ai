@@ -46,11 +46,9 @@ class NLPServiceLemmatization:
         text = unidecode(text)
         doc = self._nlp(text)
         filtered_tokens = [token for token in doc if token.text.lower() not in self._stop_words]
-        print(f"Preprocessed text without stop words: {filtered_tokens}")
 
         # Lemmatization
-        tokens_lemmatized = [token.lemma_.lower() for token in doc]
-        print(f"Processed lemmatized text: {tokens_lemmatized}")
+        tokens_lemmatized = [token.lemma_.lower() for token in filtered_tokens]
 
         # Verify if there is any key words
         for token in tokens_lemmatized:
