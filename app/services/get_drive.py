@@ -18,9 +18,10 @@ def get_file_text(presentation_id):
                 shape = element['shape']
                 if 'text' in shape:
                     text_elements = shape['text']['textElements']
+                    
                     for element in text_elements:
                         if 'textRun' in element:
-                            text_content += '\n' + f'{element['textRun']['content']}'
+                            text_content += '\n' + element['textRun']['content']
     return text_content
 
 
