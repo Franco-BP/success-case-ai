@@ -48,7 +48,7 @@ class NLPServiceLemmatization:
         filtered_tokens = [token for token in doc if token.text.lower() not in self._stop_words]
 
         # Lemmatization
-        tokens_lemmatized = [token.lemma_.lower() for token in filtered_tokens]
+        tokens_lemmatized = [token.lemma_.lower() for token in doc]
 
         # Verify if there is any key words
         for token in tokens_lemmatized:
