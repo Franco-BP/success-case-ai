@@ -22,7 +22,7 @@ model = genai.GenerativeModel(
 
 def generate_chat_history(history_chat: list) -> ChatSession:
     return model.start_chat(
-        history=history_chat
+        history=history_chat if history_chat is not None else []
     )
 
 
@@ -32,7 +32,7 @@ def generate_model_message(user_message: str):
 
 def chat_model(chat_data: dict):
     user_message = chat_data["text"]
-    history = chat_data["chat_history"]
+    history = chat_data["history"]
 
     chat_session = generate_chat_history(history)
     model_message = generate_model_message(user_message)
