@@ -9,8 +9,10 @@ class NLPServiceLemmatization:
     _stop_words = None
     _key_words = ["buscar", "traer", "obtener", "investigar", "indagar", "rastrear", "localizar", "encontrar", "hallar",
                   "detectar", "descubrir", "identificar", "adquirir", "alcanzar", "capturar", "atrapar", "recoger",
-                  "tomar", "recibir", "ver", "conocer", "mejorar", "promedio", "solucion", "caso", "exito", "tecnologia", "resultado",
-                  "proyecto", "industria", "cliente", "offering", "desafio", "seguridad", "mejora", "equipo", "seguro", "mayor", "menor"]
+                  "tomar", "recibir", "ver", "conocer", "mejorar", "promedio", "solucion", "caso", "exito",
+                  "tecnologia", "resultado",
+                  "proyecto", "industria", "cliente", "offering", "desafio", "seguridad", "mejora", "equipo", "seguro",
+                  "mayor", "menor"]
     _nlp = None
 
     def __new__(cls):
@@ -53,6 +55,7 @@ class NLPServiceLemmatization:
         # Verify if there is any key words
         for token in tokens_lemmatized:
             if token in self._key_words or any(word == token for word in self._key_words):
+                print(True)
                 return True
-
+        print(False)
         return False

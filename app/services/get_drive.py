@@ -6,6 +6,7 @@ SCOPES = ['https://www.googleapis.com/auth/drive']
 credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
 service = build('drive', 'v3', credentials=credentials)
 
+
 def get_file_text(presentation_id):
     slides_service = build('slides', 'v1', credentials=credentials)
     presentation = slides_service.presentations().get(presentationId=presentation_id).execute()
@@ -17,10 +18,12 @@ def get_file_text(presentation_id):
                 shape = element['shape']
                 if 'text' in shape:
                     text_elements = shape['text']['textElements']
+                    
                     for element in text_elements:
                         if 'textRun' in element:
-                            text_content += '\n' + f'{element['textRun']['content']}'
+                            text_content += '\n' + element['textRun']['content']
     return text_content
+
 
 def get_drives():
     folder_id = '16HFZXMEj86lxImMnzVg-3TL6VsBjQ5gk'
@@ -40,7 +43,5 @@ def get_drives():
                 'id': item['id']
             }
             google_docs.append(file_data)
-    
-    return google_docs
-        
 
+    return google_docs

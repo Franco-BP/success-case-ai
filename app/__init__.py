@@ -1,10 +1,13 @@
 from flask import Flask
-from .services.vector_db_service import VectorDB
+from flask_cors import CORS
+
+from .services.vector_db_service import VectorDB, populate_vector_db
+from .services.nlp_service_lemmatization import NLPServiceLemmatization
 
 
 def create_app():
     app = Flask(__name__)
-
+    CORS(app, support_credentials=False)
     ## ELIMINATE - TESTING PURPOSE
     from .routes.test_routes import test
     
@@ -13,9 +16,10 @@ def create_app():
 
     ## ELIMINATE - TESTING PURPOSE
     app.register_blueprint(test, url_prefix='/test')
-
     app.register_blueprint(chat, url_prefix='/chat')
     app.register_blueprint(vectors, url_prefix='/vectors')
+
     app.vector_db_client = VectorDB()
+    populate_vector_db("success_case")
 
     return app

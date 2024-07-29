@@ -63,14 +63,19 @@ def populate_vector_db(collection: str) -> bool:
         return False
 
 
-def query(data, collection="success_case", limit=2):
+def query(data, collection="success_case"):
     try:
+        default_limit = 2
         collection = VectorDB.get_collection(collection)
         query_result = collection.query(
             query_texts=[data['text']],
-            n_results=limit
+            n_results=default_limit
         )
-        return query_result
+        return {
+            "documents": query_result['documents'][0],
+            "metadatas": query_result['metadatas'][0],
+            "ids": query_result['ids'][0]
+        }
     except Exception as e:
         logger.error(e)
         return None
