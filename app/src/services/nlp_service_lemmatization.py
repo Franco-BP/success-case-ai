@@ -7,12 +7,15 @@ class NLPServiceLemmatization:
 
     _instance = None
     _stop_words = None
-    _key_words = ["buscar", "traer", "obtener", "investigar", "indagar", "rastrear", "localizar", "encontrar", "hallar",
-                  "detectar", "descubrir", "identificar", "adquirir", "alcanzar", "capturar", "atrapar", "recoger",
-                  "tomar", "recibir", "ver", "conocer", "mejorar", "promedio", "solucion", "caso", "exito",
-                  "tecnologia", "resultado",
-                  "proyecto", "industria", "cliente", "offering", "desafio", "seguridad", "mejora", "equipo", "seguro",
-                  "mayor", "menor"]
+    _key_words = [
+        "buscar", "buscame", "necesitar", "necesitame", "traer", "traeme", "obtener", "obtenme", "investigar",
+        "investigame", "indagar", "indagame", "rastrear", "rastreame", "localizar", "localizame", "encontrar",
+        "encuentrame", "hallar", "hallame", "detectar", "detectame", "descubrir", "descubrime", "identificar",
+        "identificame", "adquirir", "adquirime", "alcanzar", "alcanzame", "capturar", "capturame", "atrapar",
+        "atrapame", "recoger", "recogeme", "tomar", "tomame", "recibir", "recibeme", "ver", "veme",
+        "conocer", "conoceme", "mejorar", "mejorame", "promedio", "solucion", "caso", "exito", "tecnologia",
+        "resultado", "proyecto", "industria", "cliente", "offering", "desafio", "seguridad", "mejora", "equipo",
+        "seguro", "mayor", "menor"]
     _nlp = None
 
     def __new__(cls):

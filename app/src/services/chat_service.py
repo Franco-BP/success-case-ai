@@ -1,28 +1,10 @@
-import os
-
-import google.generativeai as genai
-from google.generativeai import ChatSession
 from ..services.nlp_service_lemmatization import NLPServiceLemmatization
 from ..services.vector_db_service import query
-
-genai.configure(api_key="AIzaSyBY_1om9oW2vJubvmLcn4gyV2Uk0auUUro")
-
-generation_config = {
-    "temperature": 0.1,
-    "top_p": 0.95,
-    "top_k": 64,
-    "max_output_tokens": 500,
-    "response_mime_type": "text/plain",
-}
-
-model = genai.GenerativeModel(
-    model_name="gemini-1.5-flash",
-    generation_config=generation_config,
-    system_instruction="Eres un asistente de busqueda de casos de éxito de una empresa de software. Si no te piden describir un caso de éxito, respondes al mensaje y al final te ofreces para realizar una búsqueda. Si te piden describir un caso de éxito, lo describes brevemente mencionando que ese caso de éxito es la mejor coincidencia con su búsqueda."
-)
+from ..clients.model_client import ModelClient
 
 
-def generate_chat_history(history_chat: list) -> ChatSession:
+def generate_chat_history(history_chat: list):
+    model = ModelClient().get_model()
     return model.start_chat(
         history=history_chat if history_chat is not None else []
     )

@@ -1,30 +1,10 @@
 from typing import Any
-from ..services.get_drive import *
+from ..services.drive_service import *
+from ..clients.vector_db_client import VectorDB
 import logging
 
-import chromadb
 
 logger = logging.getLogger(__name__)
-
-
-class VectorDB:
-    client = None
-
-    def __init__(self):
-        if VectorDB.client is None:
-            VectorDB.client = chromadb.Client()
-
-    @staticmethod
-    def get_or_create_collection(name: str):
-        client = VectorDB.client
-        target_collection = client.get_or_create_collection(name)
-        return target_collection
-
-    @staticmethod
-    def get_collection(name: str):
-        client = VectorDB.client
-        target_collection = client.get_collection(name)
-        return target_collection
 
 
 def map_to_vector_data(data: list) -> dict[str, list[Any]]:
@@ -46,9 +26,9 @@ def map_to_vector_data(data: list) -> dict[str, list[Any]]:
 
 def populate_vector_db(collection: str) -> bool:
     try:
-        collection = VectorDB.get_or_create_collection(collection)
+        collection = VectorDB().get_or_create_collection(collection)
 
-        presentations = get_drives()
+        presentations = get_slides_content()
 
         parsed_data = map_to_vector_data(presentations)
 
@@ -66,7 +46,7 @@ def populate_vector_db(collection: str) -> bool:
 def query(data, collection="success_case"):
     try:
         default_limit = 2
-        collection = VectorDB.get_collection(collection)
+        collection = VectorDB().get_collection(collection)
         query_result = collection.query(
             query_texts=[data['text']],
             n_results=default_limit

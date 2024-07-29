@@ -1,25 +1,25 @@
 from flask import Flask
 from flask_cors import CORS
+from .config.config import Config
 
-from .services.vector_db_service import VectorDB, populate_vector_db
-from .services.nlp_service_lemmatization import NLPServiceLemmatization
+from .src.clients.vector_db_client import VectorDB
+from .src.services.vector_db_service import populate_vector_db
+from .src.clients.model_client import ModelClient
+from .src.clients.google_drive_client import DriveClient
 
 
 def create_app():
     app = Flask(__name__)
-    CORS(app, support_credentials=False)
-    ## ELIMINATE - TESTING PURPOSE
-    from .routes.test_routes import test
-    
-    from .routes.chat_routes import chat
-    from .routes.vectors_routes import vectors
+    app.config.from_object(Config)
 
-    ## ELIMINATE - TESTING PURPOSE
-    app.register_blueprint(test, url_prefix='/test')
+    CORS(app, support_credentials=False)
+    
+    from .src.controllers.chat_controller import chat
+    from .src.controllers.vectors_controller import vectors
+
     app.register_blueprint(chat, url_prefix='/chat')
     app.register_blueprint(vectors, url_prefix='/vectors')
 
-    app.vector_db_client = VectorDB()
     populate_vector_db("success_case")
 
     return app
