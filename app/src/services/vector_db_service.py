@@ -54,7 +54,8 @@ def query(data, collection="success_case"):
         return {
             "documents": query_result['documents'][0],
             "metadatas": query_result['metadatas'][0],
-            "ids": query_result['ids'][0]
+            "ids": query_result['ids'][0],
+            "distances": query_result['distances'][0]
         }
     except Exception as e:
         logger.error(e)

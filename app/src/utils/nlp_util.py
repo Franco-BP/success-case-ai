@@ -5,7 +5,7 @@ class NLPUtil:
 
     _instance = None
     _stop_words = None
-    _key_words = [
+    key_words = [
         "buscar", "buscame", "necesitar", "necesitame", "traer", "traeme", "obtener", "obtenme", "investigar",
         "investigame", "indagar", "indagame", "rastrear", "rastreame", "localizar", "localizame", "encontrar",
         "encuentrame", "hallar", "hallame", "detectar", "detectame", "descubrir", "descubrime", "identificar",
@@ -14,7 +14,7 @@ class NLPUtil:
         "conocer", "conoceme", "mejorar", "mejorame", "promedio", "solucion", "caso", "exito", "tecnologia",
         "resultado", "proyecto", "industria", "cliente", "offering", "desafio", "seguridad", "mejora", "equipo",
         "seguro", "mayor", "menor"]
-    _nlp = None
+    nlp = None
 
     def __new__(cls):
         if not cls._instance:
@@ -26,8 +26,8 @@ class NLPUtil:
         if not hasattr(self, '_initialized'):
             try:
                 # Load Spanish model from SpaCy
-                self._nlp = spacy.load('es_core_news_sm')
-                self._stop_words = self._nlp.Defaults.stop_words
+                self.nlp = spacy.load('es_core_news_sm')
+                self._stop_words = self.nlp.Defaults.stop_words
                 print(f"Initialized instance.")
             except Exception as e:
                 print(f"Error downloading NLTK resources: {e}")

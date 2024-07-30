@@ -15,7 +15,9 @@ def is_search(text):
 
     # Preprocessing of the text
     text = unidecode(text)
-    doc = NLPUtil()._nlp(text)
+    doc = NLPUtil().nlp(text)
+
+    # This should be the input for the lemmatization
     #filtered_tokens = [token for token in doc if token.text.lower() not in NLPUtil()._stop_words]
 
     # Lemmatization
@@ -23,8 +25,6 @@ def is_search(text):
 
     # Verify if there is any key words
     for token in tokens_lemmatized:
-        if token in NLPUtil()._key_words or any(word == token for word in NLPUtil()._key_words):
-            print(True)
+        if token in NLPUtil().key_words or any(word == token for word in NLPUtil().key_words):
             return True
-    print(False)
     return False

@@ -15,10 +15,8 @@ def create_app():
     CORS(app, support_credentials=False)
     
     from .src.controllers.chat_controller import chat
-    from .src.controllers.vectors_controller import vectors
 
     app.register_blueprint(chat, url_prefix='/chat')
-    app.register_blueprint(vectors, url_prefix='/vectors')
 
     populate_vector_db("success_case")
 
