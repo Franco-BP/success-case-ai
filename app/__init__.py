@@ -14,7 +14,7 @@ def create_app():
     app.config.from_object(Config)
 
     scheduler = BackgroundScheduler()
-    CORS(app, support_credentials=False)
+    CORS(app)
     
     from .src.controllers.chat_controller import chat
 
