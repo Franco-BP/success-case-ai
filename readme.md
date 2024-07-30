@@ -5,26 +5,27 @@
 
 # For Executing...
 
-## Set up the Virtual Environment:
+### Set up the Virtual Environment:
 
-### 1. Create the virtual environment
+#### 1. Create the virtual environment
 
 `$ cd success-case-ai`
 
 `$ python3 -m venv .venv`
 
-### 2. Run the virtual environment.
+#### 2. Run the virtual environment.
 
 `$ . .venv/bin/activate`
 
-### 3. Install the dependencies for the virtual environment.
-#### Use the 'pip' command that suits you
+#### 3. Install the dependencies for the virtual environment.
+
+Use the 'pip' command that suits you
 
 `$ pip3 install -r requirements.txt`
 
 `$ pip install -r requirements.txt`
 
-## Run the Application:
+### Run the Application:
 
 Standing on the success-case-ai folder:
 
@@ -32,12 +33,12 @@ Standing on the success-case-ai folder:
 
 # For Developing...
 
-## Install a new dependency:
+### Install a new dependency:
 
-### IMPORTANT:
+#### IMPORTANT:
 All dependencies not installed locally will be overwritten. Need to have ALL dependencies in the current requirements.txt already installed. If dubious, use an alternate name for 'requirements.txt' name and copy manually the new values.
 
-### 1. Install the dependency 'test1'
+#### 1. Install the dependency 'test1'
 
 Use the 'pip' command that suits you:
 
@@ -45,7 +46,7 @@ Use the 'pip' command that suits you:
 
 `$ pip install test1`
 
-### 2. Populate the requirements.txt
+#### 2. Populate the requirements.txt
 
 Use the 'pip' command that suits you:
 
