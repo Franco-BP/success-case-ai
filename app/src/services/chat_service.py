@@ -70,7 +70,7 @@ def generate_chat(request: dict):
         return {
             "model_response": model_response,
             "is_search": search,
-            "relational_success_cases": get_success_case_list(request['search_context']) if is_search else None
+            "relational_success_cases": get_success_case_list(request['search_context']) if search else None
         }
     except Exception as e:
         print(e)
