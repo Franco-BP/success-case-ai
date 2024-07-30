@@ -31,6 +31,8 @@ The "get_slides_content" function from the "drive_service.py" file located in "s
 
 #### 5. Set up Gemini API
 
+To initialize the chatbot model, you need to enter the variable **GENIE_API_KEY** with a Gemini API KEY into the `app/config/.env` file. To obtain this key, you can follow the steps in the following link: [Gemini API KEY](https://aistudio.google.com/app/apikey).
+
 #### 6. Add .env for Gemini API
 
 The app consumes the key for Gemini from the path: success-case-ai > app > config
