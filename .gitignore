@@ -7,3 +7,6 @@ credentials.json
 __pycache__
 
 service-account-cred.json
+
+env
+.env
