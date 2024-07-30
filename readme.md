@@ -5,11 +5,11 @@
 
 # For Setting up...
 
-### 1. Set up Google Drive Credentials:
+#### 1. Set up Google Drive Credentials:
 
 Link: [Developers Google Drive API](https://developers.google.com/drive/api/quickstart/python?hl=es-419)
 
-### 2. Add credentials.json
+#### 2. Add credentials.json
 The app consumes the credentials.json from the path: success-case-ai > app > config
 
 `$ cd success-case-ai/app`\
@@ -18,20 +18,20 @@ The app consumes the credentials.json from the path: success-case-ai > app > con
 
 Copy your credentials in this .json file.
 
-### 3. Copy Google Drive folder id:
+#### 3. Copy Google Drive folder id:
 
 The app consumes the Google Slides files from a folder. Open this folder in Google Drive (web) and copy the ID from the web link as showed below:
 
 If this is the link `https://drive.google.com/drive/folders/16HFZXMEj86lxImMnzVg-3TL6VsBjQ5gk`\
 This is the ID `16HFZXMEj86lxImMnzVg-3TL6VsBjQ5gk`
 
-### 4. Insert Google Drive folder id:
+#### 4. Insert Google Drive folder id:
 
 The "get_slides_content" function from the "drive_service.py" file located in "success-case-ai > app > src > services" receives the drive folder ID as a parameter. Change the default parameter or the function call to use the desired Folder ID (the one extracted in step 3).
 
-### 5. Set up Gemini API
+#### 5. Set up Gemini API
 
-### 6. Add .env for Gemini API
+#### 6. Add .env for Gemini API
 
 The app consumes the key for Gemini from the path: success-case-ai > app > config
 
