@@ -1,8 +1,6 @@
 import spacy
-from unidecode import unidecode
 
-
-class NLPServiceLemmatization:
+class NLPUtil:
     """Singleton class for NLP services"""
 
     _instance = None
@@ -20,7 +18,7 @@ class NLPServiceLemmatization:
 
     def __new__(cls):
         if not cls._instance:
-            cls._instance = super(NLPServiceLemmatization, cls).__new__(cls)
+            cls._instance = super(NLPUtil, cls).__new__(cls)
         return cls._instance
 
     def __init__(self):
@@ -33,32 +31,3 @@ class NLPServiceLemmatization:
                 print(f"Initialized instance.")
             except Exception as e:
                 print(f"Error downloading NLTK resources: {e}")
-
-    def is_search(self, text):
-        """
-        Determines whether the user intents to search success cases using lemmatization.
-
-        Args:
-            text: The user's text.
-
-        Returns:
-            bool: True if the intention is to search, False if it's not.
-        """
-
-        # Preprocessing of the text
-        text = unidecode(text)
-        doc = self._nlp(text)
-        filtered_tokens = [token for token in doc if token.text.lower() not in self._stop_words]
-        print(f"Preprocessed text without stop words: {filtered_tokens}")
-
-        # Lemmatization
-        tokens_lemmatized = [token.lemma_.lower() for token in doc]
-        print(f"Processed lemmatized text: {tokens_lemmatized}")
-
-        # Verify if there is any key words
-        for token in tokens_lemmatized:
-            if token in self._key_words or any(word == token for word in self._key_words):
-                print(True)
-                return True
-        print(False)
-        return False

@@ -1,4 +1,4 @@
-from ..services.nlp_service_lemmatization import NLPServiceLemmatization
+from ..services.nlp_service import is_search
 from ..services.vector_db_service import query
 from ..clients.model_client import ModelClient
 
@@ -62,7 +62,7 @@ def get_success_case_list(relational_success_case_info: dict) -> list:
 
 def generate_chat(request: dict):
     try:
-        is_search = NLPServiceLemmatization().is_search(request['text'])
+        is_search = is_search(request['text'])
         request['is_search'] = is_search
         if is_search:
             request['search_context'] = query(request)
