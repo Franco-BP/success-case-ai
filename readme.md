@@ -22,7 +22,7 @@ Copy your credentials in this .json file.
 
 The app consumes the Google Slides files from a folder. Open this folder in Google Drive (web) and copy the ID from the web link as showed below:
 
-If this is the link `https://drive.google.com/drive/folders/16HFZXMEj86lxImMnzVg-3TL6VsBjQ5gk`
+If this is the link `https://drive.google.com/drive/folders/16HFZXMEj86lxImMnzVg-3TL6VsBjQ5gk`\
 This is the ID `16HFZXMEj86lxImMnzVg-3TL6VsBjQ5gk`
 
 ### 4. Insert Google Drive folder id:
